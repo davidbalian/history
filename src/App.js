@@ -22,7 +22,10 @@ function App() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    db.collection("posts")
+    const collectionRef = db.collection("posts");
+    const query = collectionRef.orderBy("year");
+
+    query
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
