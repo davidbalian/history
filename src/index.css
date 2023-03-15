@@ -27,7 +27,7 @@ p {
 }
 
 .App {
-  max-width: 800px;
+  max-width: 600px;
   margin: auto;
   border-right: 1px solid #d2d2d2;
   border-left: 1px solid #d2d2d2;
@@ -43,6 +43,8 @@ p {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f5f5f5dd;
+  backdrop-filter: blur(20px);
 }
 
 .posts {
@@ -55,16 +57,41 @@ p {
   border-bottom: 1px solid lightgray;
 }
 
+.post-img {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid lightgray;
+  margin-top: 2rem;
+}
+
+.profile-picture {
+  width: 30px;
+  height: auto;
+  border-radius: 50%;
+}
+
 .username {
   font-weight: bold;
   margin-bottom: 0.25rem;
 }
 
 .post-text {
-  margin: 0.5rem 0;
+  margin: 1rem 0 0 0;
+}
+
+.status {
+  color: rgb(83, 83, 83);
+  font-size: 14px;
 }
 
 .user-location {
   display: flex;
   gap: 0.25rem;
+  justify-content: flex-start;
+}
+
+.post-info {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
 }

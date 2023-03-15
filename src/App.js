@@ -48,6 +48,9 @@ function App() {
             location={post.location}
             text={post.text}
             year={post.year}
+            profilePic={post.profile ? post.profile : ""}
+            postPic={post.image ? post.image : ""}
+            status={post.status ? post.status : ""}
           />
         ))}
       </div>
