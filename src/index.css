@@ -95,3 +95,10 @@ p {
   gap: 0.75rem;
   align-items: center;
 }
+
+@media screen and (max-width: 764px) {
+  .posts {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+}
