@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <h2>History App</h2>
+        <h2 className="serif light">Histogram</h2>
       </div>
       <div className="posts">
         {posts.map((post) => (
