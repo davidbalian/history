@@ -1,8 +1,11 @@
-import { useEffect, useState } from "react";
-import initializeApp from "firebase/compat/app";
-import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
-import Post from "./Post";
+import "firebase/compat/auth";
+import firebase from "firebase/compat/app";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Signup from "./Signup";
+import Login from "./Login";
+import Home from "./Home";
+import { useState, useEffect } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -16,48 +19,42 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const db = firebase.firestore();
-
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState(null);
+  const auth = firebase.auth();
 
   useEffect(() => {
-    const collectionRef = db.collection("posts");
-    const query = collectionRef.orderBy("year");
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        setUser(authUser);
+      } else {
+        setUser(null);
+      }
+    });
 
-    query
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          const data = querySnapshot.docs.map((doc) => doc.data());
-          setPosts(data);
-        });
-      })
-      .catch((error) => {
-        console.log("Error getting documents:", error);
-      });
-  }, []);
+    // cleanup function
+    return unsubscribe;
+  }, [auth]);
 
   return (
-    <div className="App">
-      <div className="header">
-        <h2 className="serif light">Histogram</h2>
-      </div>
-      <div className="posts">
-        {posts.map((post) => (
-          <Post
-            key={post.username}
-            username={post.username}
-            location={post.location}
-            text={post.text}
-            year={post.year}
-            profilePic={post.profile ? post.profile : ""}
-            postPic={post.image ? post.image : ""}
-            status={post.status ? post.status : ""}
+    <BrowserRouter basename="/history">
+      <div className="App">
+        <div className="header">
+          <h2 className="serif light">Histogram</h2>
+        </div>
+        <Routes>
+          <Route path="/" element={user ? <Home /> : <Signup />} />
+          <Route
+            path="/login"
+            element={user ? <Navigate to="/" replace /> : <Login />}
           />
-        ))}
+          <Route
+            path="/signup"
+            element={user ? <Navigate to="/" replace /> : <Signup />}
+          />
+        </Routes>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 

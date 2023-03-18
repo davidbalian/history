@@ -19,6 +19,7 @@ const Post = ({
               ? profilePic
               : "https://cdn.jsdelivr.net/gh/davidbalian/history-media/default-profile.jpeg"
           }
+          alt="profile"
         />
         <div className="user-info">
           <div className="user-location">
