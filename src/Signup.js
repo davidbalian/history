@@ -87,7 +87,8 @@ const Signup = () => {
       </form>
       {error && <p>{error}</p>}
       <p className="small">
-        Already have an account? <a href="/history/login">Login here.</a>
+        Already have an account?{" "}
+        <a href="https://davidbalian.github.io/history/login">Login here.</a>
       </p>
     </div>
   );
