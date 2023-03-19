@@ -1,7 +1,7 @@
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./Signup";
 import Login from "./Login";
 import Home from "./Home";
@@ -37,24 +37,22 @@ function App() {
   }, [auth]);
 
   return (
-    <HashRouter basename="/history">
-      <div className="App">
-        <div className="header">
-          <h2 className="serif light">Histogram</h2>
-        </div>
-        <Routes>
-          <Route path="/" element={user ? <Home /> : <Signup />} />
-          <Route
-            path="/login"
-            element={user ? <Navigate to="/" replace /> : <Login />}
-          />
-          <Route
-            path="/signup"
-            element={user ? <Navigate to="/" replace /> : <Signup />}
-          />
-        </Routes>
+    <div className="App">
+      <div className="header">
+        <h2 className="serif light">Histogram</h2>
       </div>
-    </HashRouter>
+      <Routes>
+        <Route path="/" element={user ? <Home /> : <Signup />} />
+        <Route
+          path="/login"
+          element={user ? <Navigate to="/" replace /> : <Login />}
+        />
+        <Route
+          path="/signup"
+          element={user ? <Navigate to="/" replace /> : <Signup />}
+        />
+      </Routes>
+    </div>
   );
 }
 
