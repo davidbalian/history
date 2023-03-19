@@ -2,7 +2,7 @@ import { useState } from "react";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -88,7 +88,9 @@ const Signup = () => {
       {error && <p>{error}</p>}
       <p className="small">
         Already have an account?{" "}
-        <a href="https://davidbalian.github.io/history/login">Login here.</a>
+        <Link href="https://davidbalian.github.io/history/login">
+          Login here.
+        </Link>
       </p>
     </div>
   );

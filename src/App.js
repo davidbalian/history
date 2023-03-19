@@ -1,7 +1,7 @@
 import "firebase/compat/firestore";
 import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Signup from "./Signup";
 import Login from "./Login";
 import Home from "./Home";
@@ -37,7 +37,7 @@ function App() {
   }, [auth]);
 
   return (
-    <BrowserRouter basename="/history">
+    <HashRouter basename="/history">
       <div className="App">
         <div className="header">
           <h2 className="serif light">Histogram</h2>
@@ -54,7 +54,7 @@ function App() {
           />
         </Routes>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

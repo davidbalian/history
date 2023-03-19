@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -54,9 +54,9 @@ const Login = () => {
       {error && <p>{error}</p>}
       <p className="small">
         Don't have an account?{" "}
-        <a href="https://davidbalian.github.io/history/signup">
+        <Link href="https://davidbalian.github.io/history/signup">
           Register here.
-        </a>
+        </Link>
       </p>
     </div>
   );
