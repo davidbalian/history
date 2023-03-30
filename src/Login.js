@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "./logo.svg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -25,35 +26,32 @@ const Login = () => {
 
   return (
     <div className="login">
-      <h2 className="serif light">Login</h2>
+      <img src={logo} alt="olympgram logo" className="logo" />
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email: </label>
-          <br />
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <br />
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Login</button>
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="btn">
+          Login
+        </button>
+        <Link to="/guest" className="btn">
+          Guest Login
+        </Link>
       </form>
       {error && <p>{error}</p>}
       <p className="small">
-        Don't have an account? <Link to="/signup">Register here.</Link>
+        No account? <Link to="/signup">Register here.</Link>
       </p>
     </div>
   );

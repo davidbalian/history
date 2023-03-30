@@ -50,7 +50,7 @@ const Home = () => {
 
   return (
     <div className="posts">
-      <button onClick={handleLogout} className="btn">
+      <button onClick={handleLogout} className="btn logout-btn">
         Logout
       </button>
 

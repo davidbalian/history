@@ -3,6 +3,7 @@ import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "./logo.svg";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -50,44 +51,39 @@ const Signup = () => {
 
   return (
     <div className="signup">
-      <h2 className="serif light">Sign Up</h2>
+      <img src={logo} alt="olympgram logo" className="logo" />
       <form onSubmit={handleSignup}>
-        <div>
-          {" "}
-          <label htmlFor="username">Username: </label>
-          <br />
-          <input
-            type="text"
-            id="username"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="email">Email: </label>
-          <br />
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password: </label>
-          <br />
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Sign Up</button>
+        <input
+          type="text"
+          placeholder="Username"
+          id="username"
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button type="submit" className="btn">
+          Sign Up
+        </button>
+        <Link to="/guest" className="btn">
+          Guest Login
+        </Link>
       </form>
       {error && <p>{error}</p>}
       <p className="small">
-        Already have an account? <Link to="/login">Login here.</Link>
+        Have an account? <Link to="/login">Login here.</Link>
       </p>
     </div>
   );

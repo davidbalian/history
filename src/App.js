@@ -6,6 +6,7 @@ import Signup from "./Signup";
 import Login from "./Login";
 import Home from "./Home";
 import { useState, useEffect } from "react";
+import Welcome from "./Welcome";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -38,19 +39,52 @@ function App() {
 
   return (
     <div className="App">
-      <div className="header">
-        <h2 className="serif light">Olympgram</h2>
-      </div>
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Signup />} />
+        <Route
+          path="/"
+          element={
+            user ? (
+              <>
+                <header className="header">
+                  <h2 className="serif light">Olympgram</h2>
+                </header>
+                <Home />
+              </>
+            ) : (
+              <div className="login-signup">
+                <Welcome />
+                <Signup />
+              </div>
+            )
+          }
+        />
         <Route
           path="/login"
-          element={user ? <Navigate to="/" replace /> : <Login />}
+          element={
+            user ? (
+              <Navigate to="/" replace />
+            ) : (
+              <div className="login-signup">
+                <Welcome />
+                <Login />
+              </div>
+            )
+          }
         />
         <Route
           path="/signup"
-          element={user ? <Navigate to="/" replace /> : <Signup />}
+          element={
+            user ? (
+              <Navigate to="/" replace />
+            ) : (
+              <div className="login-signup">
+                <Welcome />
+                <Signup />
+              </div>
+            )
+          }
         />
+        <Route path="/guest" element={<Home />} />
       </Routes>
     </div>
   );

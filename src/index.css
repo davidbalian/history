@@ -1,44 +1,92 @@
+:root {
+  --radius: 2px;
+  --accent: hsl(47, 56%, 92%);
+  --accent-transparent: rgba(255, 255, 255, 0.6);
+  --dark: #191919;
+  --light: hsl(0, 0%, 40%);
+  --main: #261003;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
 }
 
-body {
-  padding: 2rem 1rem;
-  background-color: #f5f5f5;
+.logo {
+  width: 100%;
+  height: auto;
 }
 
-p {
-  font-family: "IBM Plex Sans", sans-serif;
+h1,
+h2 {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  color: var(--main);
 }
 
-.serif {
-  font-family: "Noto Serif", serif;
+h1 {
+  font-size: 2.5rem;
 }
 
-.bold {
-  font-weight: bold;
+h2 {
+  font-size: 1.5rem;
 }
 
-.light {
-  font-weight: 400;
-}
-
+p,
+button,
+input,
+a,
 .small {
+  font-family: "IBM Plex Sans", sans-serif;
   font-size: 14px;
+  color: var(--main);
 }
 
-a {
-  color: black;
+input {
+  text-align: left;
 }
 
-.App {
-  max-width: 600px;
-  margin: auto;
-  border-right: 1px solid #d2d2d2;
-  border-left: 1px solid #d2d2d2;
+.btn {
+  text-align: center;
+}
+
+.btn,
+input {
+  padding: 0.5rem;
+  border: 1px solid var(--dark);
+  border-radius: var(--radius);
+  background-color: transparent;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--main);
+  color: var(--accent);
+  transition: 0.1s ease;
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: var(--light);
+}
+
+input:focus {
+  outline: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.logout-btn {
+  position: fixed;
+  left: 12px;
+  top: 16px;
 }
 
 .header {
@@ -47,19 +95,49 @@ a {
   left: 0;
   top: 0;
   width: 100vw;
-  border-radius: 4px 4px 0 0;
+  border-radius: var(--radius);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f5f5f5dd;
-  backdrop-filter: blur(20px);
 }
 
-.posts,
+.login-signup {
+  height: 100vh;
+  display: flex;
+  gap: 4rem;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent);
+  background-image: url("../public/grain.svg"), url("../public/pattern.svg");
+  background-size: cover;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
 .login,
-.signup {
-  margin-top: 4rem;
-  padding: 1rem 2rem;
+.signup,
+.welcome-description {
+  background: var(--accent-transparent);
+  backdrop-filter: blur(8px) saturate(170%);
+}
+
+.welcome-description {
+  max-width: 50ch;
+  padding: 1.5rem 2rem;
+  border-radius: var(--radius);
+  text-align: center;
+}
+
+.posts {
+  max-width: 600px;
+  margin: auto;
+  padding: 0 1rem;
 }
 
 .post {
@@ -69,7 +147,7 @@ a {
 
 .post-img {
   width: 100%;
-  border-radius: 4px;
+  border-radius: var(--radius);
   border: 1px solid lightgray;
   margin-top: 2rem;
 }
@@ -85,18 +163,17 @@ a {
 }
 
 .post-text {
-  margin: 1rem 0 0 0;
+  margin-top: 1rem;
 }
 
 .status {
-  color: rgb(83, 83, 83);
+  color: #535353;
   font-size: 14px;
 }
 
 .user-location {
   display: flex;
   gap: 0.25rem;
-  justify-content: flex-start;
 }
 
 .post-info {
@@ -111,61 +188,21 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+  max-width: 295px;
 }
 
-label,
-button,
-input {
-  font-family: "IBM Plex Sans", sans-serif;
-}
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 2rem;
+  }
 
-button[type="submit"],
-input {
-  padding: 0.5rem 0.5rem;
-  background-color: transparent;
-  border: 1px solid #d2d2d2;
-  border-radius: 4px;
-  font-size: 16px;
-}
+  h2 {
+    font-size: 1.5rem;
+  }
 
-button[type="submit"]:hover {
-  background-color: lightgray;
-  transition: 0.1s ease;
-  cursor: pointer;
-}
-
-.btn {
-  padding: 0.25rem 0.5rem;
-  background-color: transparent;
-  border: 1px solid #d2d2d2;
-  border-radius: 4px;
-  font-size: 16px;
-  position: fixed;
-  left: 12px;
-  top: 16px;
-}
-
-.btn:hover {
-  background-color: lightgray;
-  transition: 0.1s ease;
-  cursor: pointer;
-}
-
-input {
-  margin-top: 0.5rem;
-  width: 100%;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: 50%;
-  margin: auto;
-}
-
-@media screen and (max-width: 764px) {
   .posts,
   .login,
   .signup {
@@ -173,7 +210,36 @@ form {
     padding: 1rem;
   }
 
-  form {
-    width: 90%;
+  .login-signup {
+    padding: 0 2rem;
+    justify-content: center;
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .welcome-description {
+    display: none;
+  }
+}
+
+@media (max-width: 764px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .welcome-description {
+    display: none;
+  }
+
+  .login-signup {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 0;
   }
 }
