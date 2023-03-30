@@ -2,6 +2,7 @@
   --radius: 2px;
   --accent: hsl(47, 56%, 92%);
   --accent-transparent: rgba(255, 255, 255, 0.6);
+  --header-transparent: rgba(246, 241, 223, 0.5);
   --dark: #191919;
   --light: hsl(0, 0%, 40%);
   --main: #261003;
@@ -89,16 +90,24 @@ form {
   top: 16px;
 }
 
-.header {
-  padding: 1rem 0.5rem;
+header {
+  padding: 0.5rem;
   position: fixed;
   left: 0;
   top: 0;
   width: 100vw;
+  height: 60px;
   border-radius: var(--radius);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--header-transparent);
+  backdrop-filter: blur(12px);
+}
+
+header .logo {
+  height: 100%;
+  width: auto;
 }
 
 .login-signup {
@@ -134,21 +143,30 @@ form {
   text-align: center;
 }
 
+.home {
+  background-color: var(--accent);
+  background-image: url("../public/grain.svg"), url("../public/bg.svg");
+  /* background-attachment: fixed; */
+  background-size: contain;
+  padding: calc(50px + 4rem) 0;
+}
+
 .posts {
   max-width: 600px;
   margin: auto;
-  padding: 0 1rem;
+  padding: 0 2rem;
+  background-color: var(--accent);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .post {
   padding: 2rem 0;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .post-img {
   width: 100%;
   border-radius: var(--radius);
-  border: 1px solid lightgray;
   margin-top: 2rem;
 }
 
@@ -160,15 +178,11 @@ form {
 
 .username {
   font-weight: bold;
+  font-size: 16px;
 }
 
 .post-text {
   margin-top: 1rem;
-}
-
-.status {
-  color: #535353;
-  font-size: 14px;
 }
 
 .user-location {
@@ -203,11 +217,8 @@ form {
     font-size: 1.5rem;
   }
 
-  .posts,
-  .login,
-  .signup {
-    margin-top: 2rem;
-    padding: 1rem;
+  .posts {
+    width: 90%;
   }
 
   .login-signup {
@@ -229,6 +240,16 @@ form {
 
   h2 {
     font-size: 1.5rem;
+  }
+
+  .posts {
+    width: 100%;
+    box-shadow: none;
+    background-color: var(--header-transparent);
+  }
+
+  .home {
+    padding: calc(50px + 2rem) 0;
   }
 
   .welcome-description {

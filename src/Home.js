@@ -49,23 +49,25 @@ const Home = () => {
   };
 
   return (
-    <div className="posts">
-      <button onClick={handleLogout} className="btn logout-btn">
-        Logout
-      </button>
+    <div className="home">
+      <div className="posts">
+        <button onClick={handleLogout} className="btn logout-btn">
+          Logout
+        </button>
 
-      {posts.map((post) => (
-        <Post
-          key={post.username}
-          username={post.username}
-          location={post.location}
-          text={post.text}
-          year={post.year}
-          profilePic={post.profile ? post.profile : ""}
-          postPic={post.image ? post.image : ""}
-          status={post.status ? post.status : ""}
-        />
-      ))}
+        {posts.map((post) => (
+          <Post
+            key={post.username}
+            username={post.username}
+            location={post.location}
+            text={post.text}
+            year={post.year}
+            profilePic={post.profile ? post.profile : ""}
+            postPic={post.image ? post.image : ""}
+            status={post.status ? post.status : ""}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import Login from "./Login";
 import Home from "./Home";
 import { useState, useEffect } from "react";
 import Welcome from "./Welcome";
+import Header from "./Header";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -45,9 +46,7 @@ function App() {
           element={
             user ? (
               <>
-                <header className="header">
-                  <h2 className="serif light">Olympgram</h2>
-                </header>
+                <Header />
                 <Home />
               </>
             ) : (
@@ -84,7 +83,15 @@ function App() {
             )
           }
         />
-        <Route path="/guest" element={<Home />} />
+        <Route
+          path="/guest"
+          element={
+            <>
+              <Header />
+              <Home />
+            </>
+          }
+        />
       </Routes>
     </div>
   );
