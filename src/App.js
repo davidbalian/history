@@ -39,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <h2 className="serif light">Histogram</h2>
+        <h2 className="serif light">Olympgram</h2>
       </div>
       <Routes>
         <Route path="/" element={user ? <Home /> : <Signup />} />
