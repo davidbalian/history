@@ -52,7 +52,7 @@ function App() {
             ) : (
               <div className="login-signup">
                 <Welcome />
-                <Signup />
+                <Login />
               </div>
             )
           }
