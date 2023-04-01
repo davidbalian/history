@@ -3,6 +3,7 @@ import "firebase/compat/auth";
 import firebase from "firebase/compat/app";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "./logo.svg";
+import GoogleLogin from "./GoogleLogin.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -45,8 +46,14 @@ const Login = () => {
         <button type="submit" className="btn">
           Login
         </button>
+        <div className="login-divider">
+          <hr />
+          <p>or</p>
+          <hr />
+        </div>
+        <GoogleLogin />
         <Link to="/guest" className="btn">
-          Guest Login
+          Continue as Guest
         </Link>
       </form>
       {error && <p>{error}</p>}

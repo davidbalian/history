@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
 import Post from "./Post";
 import { useNavigate } from "react-router-dom";
+import Loading from "./Loading.jsx";
+import ScrollToTop from "./ScrollToTop.jsx";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -20,6 +22,7 @@ const db = firebase.firestore();
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,6 +36,7 @@ const Home = () => {
           const data = querySnapshot.docs.map((doc) => doc.data());
           setPosts(data);
         });
+        setIsLoading(false);
       })
       .catch((error) => {
         console.log("Error getting documents:", error);
@@ -54,20 +58,26 @@ const Home = () => {
         <button onClick={handleLogout} className="btn logout-btn">
           Logout
         </button>
-
-        {posts.map((post) => (
-          <Post
-            key={post.username}
-            username={post.username}
-            location={post.location}
-            text={post.text}
-            year={post.year}
-            profilePic={post.profile ? post.profile : ""}
-            postPic={post.image ? post.image : ""}
-            status={post.status ? post.status : ""}
-          />
-        ))}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            {posts.map((post) => (
+              <Post
+                key={post.username}
+                username={post.username}
+                location={post.location}
+                text={post.text}
+                year={post.year}
+                profilePic={post.profile ? post.profile : ""}
+                postPic={post.image ? post.image : ""}
+                status={post.status ? post.status : ""}
+              />
+            ))}
+          </>
+        )}
       </div>
+      <ScrollToTop />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "./logo.svg";
+import GoogleLogin from "./GoogleLogin.jsx";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -77,8 +78,14 @@ const Signup = () => {
         <button type="submit" className="btn">
           Sign Up
         </button>
+        <div className="login-divider">
+          <hr />
+          <p>or</p>
+          <hr />
+        </div>
+        <GoogleLogin />
         <Link to="/guest" className="btn">
-          Guest Login
+          Continue as Guest
         </Link>
       </form>
       {error && <p>{error}</p>}

@@ -1,7 +1,8 @@
 :root {
   --radius: 2px;
-  --accent: hsl(47, 56%, 92%);
+  --accent: #f6f1df;
   --accent-transparent: rgba(255, 255, 255, 0.6);
+  --accent-transparent-2: rgba(255, 255, 255, 0.9);
   --header-transparent: rgba(246, 241, 223, 0.5);
   --dark: #191919;
   --light: hsl(0, 0%, 40%);
@@ -12,11 +13,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 .logo {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100px;
 }
 
 h1,
@@ -117,7 +119,7 @@ header .logo {
   justify-content: center;
   align-items: center;
   background-color: var(--accent);
-  background-image: url("../public/grain.svg"), url("../public/pattern.svg");
+  background-image: url("../public/grain.png"), url("../public/pattern.png");
   background-size: cover;
 }
 
@@ -145,8 +147,9 @@ header .logo {
 
 .home {
   background-color: var(--accent);
-  background-image: url("../public/grain.svg"), url("../public/bg.svg");
-  /* background-attachment: fixed; */
+  background-image: url("../public/grain.png"), url("../public/bg.png");
+  background-attachment: fixed;
+  min-height: 100vh;
   background-size: contain;
   padding: calc(50px + 4rem) 0;
 }
@@ -155,8 +158,9 @@ header .logo {
   max-width: 600px;
   margin: auto;
   padding: 0 2rem;
-  background-color: var(--accent);
+  background-color: var(--accent-transparent-2);
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius);
 }
 
 .post {
@@ -205,7 +209,118 @@ header .logo {
   gap: 1rem;
   padding: 1rem 2rem;
   border-radius: var(--radius);
-  max-width: 295px;
+  width: 350px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.dot1,
+.dot2,
+.dot3 {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--main);
+  margin: 0 5px;
+  animation: bounce 0.5s infinite alternate;
+}
+
+.dot2 {
+  animation-delay: 0.1s;
+}
+
+.dot3 {
+  animation-delay: 0.2s;
+}
+
+.social-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-login img {
+  max-height: 18px;
+}
+
+.login-divider {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-divider hr {
+  border: 0.5px solid var(--main);
+  border-radius: var(--radius);
+  width: 100%;
+  height: 0.5px;
+}
+
+.up-arrow {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  border-radius: 50%;
+  background-color: var(--main);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: 0.1s;
+}
+
+.up-arrow:hover {
+  transform: scale(1.05);
+}
+
+.up-arrow img {
+  width: 20px;
+  height: 20px;
+}
+
+.hide {
+  animation: show 0.5s 1 alternate;
+  transform: scale(0);
+}
+
+.show {
+  animation: hide 0.5s 1 alternate;
+  transorm: scale(1);
+}
+
+@keyframes show {
+  from {
+    transition: scale(0);
+  }
+
+  to {
+    transition: scale(1);
+  }
+}
+
+@keyframes hide {
+  from {
+    transition: scale(1);
+  }
+
+  to {
+    transition: scale(0);
+  }
+}
+
+@keyframes bounce {
+  to {
+    transform: translateY(-10px);
+  }
 }
 
 @media (max-width: 1024px) {
