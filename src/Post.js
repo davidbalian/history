@@ -1,34 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import firebase from "firebase/compat/app";
 
-const Post = ({
-  username,
-  year,
-  location,
-  text,
-  profilePic,
-  postPic,
-  status,
-}) => {
+const db = firebase.firestore();
+
+const Post = ({ username, year, location, text, postPic }) => {
+  const [person, setPerson] = useState({ status: "", profile: "" });
+
+  useEffect(() => {
+    const collectionRef = db.collection("persons");
+
+    collectionRef
+      .where("username", "==", username)
+      .get()
+      .then((querySnapshot) => {
+        if (!querySnapshot.empty) {
+          // Get the first document that matches the query and save it in state
+          const doc = querySnapshot.docs[0];
+          setPerson(doc.data());
+          console.log(doc.data());
+        } else {
+          console.log("No documents found.");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting documents:", error);
+      });
+  }, [username]);
+
   return (
     <div className="post">
       <div className="post-info">
         <img
           className="profile-picture"
           src={
-            profilePic
-              ? profilePic
+            person.profile
+              ? person.profile
               : "https://cdn.jsdelivr.net/gh/davidbalian/history-media/default-profile.jpeg"
           }
           alt="profile"
         />
         <div className="user-info">
           <div className="user-location">
-            <p className="username serif bold">{username}</p>
+            <Link to={`/${username}`} className="username serif bold">
+              {username}
+            </Link>
             <p>•</p>
             <p className="location serif">{location}, </p>
             <p className="year serif">{year} μ.Χ</p>
           </div>
-          {status ? <p className="status serif">{status}</p> : null}
+          <p className="status serif">{person.status}</p>
         </div>
       </div>
       <p className="post-text">{text}</p>

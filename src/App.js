@@ -8,6 +8,10 @@ import Home from "./Home";
 import { useState, useEffect } from "react";
 import Welcome from "./Welcome";
 import Header from "./Header";
+import Person from "./Person";
+import AddUser from "./AddUser";
+import AddPost from "./AddPost";
+import ScrollToTop from "./ScrollToTop";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -92,7 +96,19 @@ function App() {
             </>
           }
         />
+        <Route
+          path="/:id"
+          element={
+            <>
+              <Header />
+              <Person />
+            </>
+          }
+        />
+        <Route path="/add-user" element={<AddUser />} />
+        <Route path="/add-post" element={<AddPost />} />
       </Routes>
+      <ScrollToTop />
     </div>
   );
 }

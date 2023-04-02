@@ -4,7 +4,6 @@ import firebase from "firebase/compat/app";
 import Post from "./Post";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading.jsx";
-import ScrollToTop from "./ScrollToTop.jsx";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -64,20 +63,17 @@ const Home = () => {
           <>
             {posts.map((post) => (
               <Post
-                key={post.username}
+                key={post.text}
                 username={post.username}
                 location={post.location}
                 text={post.text}
                 year={post.year}
-                profilePic={post.profile ? post.profile : ""}
                 postPic={post.image ? post.image : ""}
-                status={post.status ? post.status : ""}
               />
             ))}
           </>
         )}
       </div>
-      <ScrollToTop />
     </div>
   );
 };
