@@ -1,9 +1,9 @@
 :root {
   --radius: 2px;
-  --accent: #f6f1df;
+  --accent: #f2f2f2;
   --accent-transparent: rgba(255, 255, 255, 0.6);
   --accent-transparent-2: rgba(255, 255, 255, 0.9);
-  --header-transparent: rgba(246, 241, 223, 0.7);
+  --header-transparent: #f2f2f2c7;
   --dark: #191919;
   --light: hsl(0, 0%, 40%);
   --main: #261003;
@@ -57,6 +57,11 @@ input {
   text-align: center;
 }
 
+a,
+button {
+  font-weight: bold;
+}
+
 .btn,
 input {
   padding: 0.5rem;
@@ -92,7 +97,8 @@ form {
 .logout-btn {
   position: fixed;
   left: 12px;
-  top: 16px;
+  top: 12px;
+  z-index: 200;
 }
 
 header {
