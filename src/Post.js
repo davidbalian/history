@@ -6,6 +6,7 @@ const db = firebase.firestore();
 
 const Post = ({ username, year, location, text, postPic }) => {
   const [person, setPerson] = useState({ status: "", profile: "" });
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const collectionRef = db.collection("persons");
@@ -51,6 +52,22 @@ const Post = ({ username, year, location, text, postPic }) => {
           </div>
           <p className="status serif">{person.status}</p>
         </div>
+        <p
+          className="info-icon"
+          onMouseEnter={() => setShow(true)}
+          onMouseLeave={() => setShow(false)}
+        >
+          &#9432;
+        </p>
+        {show ? (
+          <p
+            className="info-icon reference"
+            onMouseEnter={() => setShow(true)}
+            onMouseLeave={() => setShow(false)}
+          >
+            lorem ipsum dolor sit amet
+          </p>
+        ) : null}
       </div>
       <p className="post-text">{text}</p>
       {postPic ? <img className="post-img" src={postPic} alt="" /> : null}

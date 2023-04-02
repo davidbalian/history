@@ -12,6 +12,7 @@ import Person from "./Person";
 import AddUser from "./AddUser";
 import AddPost from "./AddPost";
 import ScrollToTop from "./ScrollToTop";
+import { useNavigate } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-be2hEU-eyyD1bgpEgVRJ5opojfnphqY",
@@ -28,6 +29,16 @@ firebase.initializeApp(firebaseConfig);
 function App() {
   const [user, setUser] = useState(null);
   const auth = firebase.auth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await firebase.auth().signOut();
+      navigate("/login");
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -44,6 +55,11 @@ function App() {
 
   return (
     <div className="App">
+      {user ? (
+        <button onClick={handleLogout} className="btn logout-btn">
+          Logout
+        </button>
+      ) : null}
       <Routes>
         <Route
           path="/"

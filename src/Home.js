@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import firebase from "firebase/compat/app";
 import Post from "./Post";
-import { useNavigate } from "react-router-dom";
 import Loading from "./Loading.jsx";
 
 const firebaseConfig = {
@@ -22,7 +21,6 @@ const db = firebase.firestore();
 const Home = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const collectionRef = db.collection("posts");
@@ -42,21 +40,9 @@ const Home = () => {
       });
   }, []);
 
-  const handleLogout = async () => {
-    try {
-      await firebase.auth().signOut();
-      navigate("/login");
-    } catch (err) {
-      alert(err);
-    }
-  };
-
   return (
     <div className="home">
       <div className="posts">
-        <button onClick={handleLogout} className="btn logout-btn">
-          Logout
-        </button>
         {isLoading ? (
           <Loading />
         ) : (
